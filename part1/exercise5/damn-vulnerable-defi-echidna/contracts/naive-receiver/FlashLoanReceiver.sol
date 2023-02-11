@@ -20,6 +20,7 @@ contract FlashLoanReceiver {
     // Function called by the pool during flash loan
     function receiveEther(uint256 fee) public payable {
         require(msg.sender == pool, "Sender must be pool");
+        // require(msg.value > fee, "Value must be greater than fee");
 
         uint256 amountToBeRepaid = msg.value + fee;
 
