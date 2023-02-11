@@ -1,18 +1,18 @@
-import "token.sol";
+import "./token.sol";
 
 contract MintableToken is Token{
 
-    int totalMinted;
-    int totalMintable;
+    uint totalMinted;
+    uint totalMintable;
 
-    constructor(int _totalMintable) public {
+    constructor(uint _totalMintable) public {
         totalMintable = _totalMintable;
     }
 
     function mint(uint value) isOwner() public {
 
-        require(int(value) + totalMinted < totalMintable);
-        totalMinted += int(value);
+        require(value + totalMinted < totalMintable);
+        totalMinted += value;
 
         balances[msg.sender] += value;
     }
