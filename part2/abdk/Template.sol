@@ -250,41 +250,79 @@ contract EchidnaTemplate {
 
     // Test for associative property
     // (x + y) + z == x + (y + z)
-    function add_test_associative(int128 x, int128 y, int128 z) public {
-    }
+    // function add_test_associative(int128 x, int128 y, int128 z) public {
+    //     int128 x_y = add(x, y);
+    //     int128 xy_z = add(x_y, z);
+    //     int128 y_z = add(y, z);
+    //     int128 x_yz = add(x, y_z);
+    //     assert(xy_z == x_yz);
+    // }
 
+    // // Test (x + y) - y == x
+    // function add_sub_inverse_operations(int128 x, int128 y) public {
+    //     emit Debug(x, y);
+    //     int128 x_y = add(x, y);
+    //     int128 new_x = sub(x_y, y);
+    //     emit Debug(x_y, new_x);
+    //     assert(new_x == x);
+    // }
 
+    // // Test that division is not commutative
+    // // (x / y) != (y / x)
+    // function div_test_not_commutative(int128 x, int128 y) public {
+    //     int128 x_y = div(x, y);
+    //     int128 y_x = div(y, x);
+    //     if (abs(x) == abs(y)) {
+    //         assert(x_y == y_x);
+    //     } else {
+    //         assert(x_y != y_x);
+    //     }
+    // }
 
+    // // Test that multiplication is associative
+    // // (x * y) * z = x * (y * z)
+    // function mul_test_associative(int128 x, int128 y, int128 z) public {
+    //     int128 x_y = mul(x,y);
+    //     int128 xy_z = mul(x_y,z);
 
+    //     int128 y_z = mul(y,z);
+    //     int128 x_yz = mul(x,y_z);
 
+    //     assert(xy_z == x_yz);
+    // }
 
+    // // Test that multiplication is distributive
+    // // x * (y + z) = (x * y) + (x * z)
+    // function mul_test_distributive(int128 x, int128 y, int128 z) public {
+    //     int128 y_z = add(y, z);
+    //     int128 x_yz = mul(x, y_z);
 
+    //     int128 x_y = mul(x, y);
+    //     int128 x_z = mul(x, z);
+    //     int128 xy_xz = add(x_y, x_z);
 
+    //     assert(x_yz == xy_xz);
+    // }
 
+    // // Test multiplication of inverses
+    // // inv(x * y) = inv(x) * inv(y)
+    // function inv_test_inverses(int128 x, int128 y, int128 z) public {
+    //     int128 x_y = mul(x, y);
+    //     int128 x_y_inv = inv(x_y);
 
+    //     int128 x_inv = inv(x);
+    //     int128 y_inv = inv(y);
+    //     int128 x_inv_y_inv = mul(x_inv, y_inv);
 
+    //     assert(x_y_inv == x_inv_y_inv);
+    // }
 
-    // Test (x + y) - y == x
-    function add_sub_inverse_operations(int128 x, int128 y) public {
-    }
+    // Test square roots
+    // sqrt(x) * sqrt(x) = x
+    function sqrt_test_square_roots(int128 x, int128 y, int128 z) public {
+        int128 x_sqrt = sqrt(x);
+        int128 x_sqrt_x_sqrt = mul(x_sqrt, x_sqrt);
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    // Test that division is not commutative
-    // (x / y) != (y / x)
-    function div_test_not_commutative(int128 x, int128 y) public {
+        assert(x_sqrt_x_sqrt == x);
     }
 }
