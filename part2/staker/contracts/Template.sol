@@ -22,6 +22,11 @@ contract EchidnaTemplate {
     constructor() {
         tokenToStake = new MockERC20("Token", "TOK");
         stakerContract = new Staker(address(tokenToStake));
+
+        // mint some tokens
+        tokenToStake.mint(address(this), type(uint256).max);
+        // approve stakerContract
+        tokenToStake.approve(address(stakerContract), type(uint256).max);
     }
 
     // function-level invariants
