@@ -319,10 +319,28 @@ contract EchidnaTemplate {
 
     // Test square roots
     // sqrt(x) * sqrt(x) = x
-    function sqrt_test_square_roots(int128 x, int128 y, int128 z) public {
+    function sqrt_test_square_roots(int128 x) public {
         int128 x_sqrt = sqrt(x);
         int128 x_sqrt_x_sqrt = mul(x_sqrt, x_sqrt);
 
         assert(x_sqrt_x_sqrt == x);
+    }
+
+    // Test logarithms
+    // log2(x * y) = log2(x) * log2(y)
+    function log2_test_logarithms(int128 x, int128 y) public {
+        // x = x % mod to make sure x is in range [-mod + 1, mod - 1]
+        int128 UPPER_BOUND = MAX_64x64 / 2;
+        require(x < (x % UPPER_BOUND));
+        require(y < (y % UPPER_BOUND));
+
+        int128 x_y = mul(x, y);
+        int128 x_y_log2 = log_2(x_y);
+
+        int128 x_log2 = log_2(x);
+        int128 y_log2 = log_2(y);
+        int128 x_log2_y_log2 = mul(x_log2, y_log2);
+
+        assert(x_y_log2 == x_log2_y_log2);
     }
 }
